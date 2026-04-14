@@ -1,15 +1,11 @@
 ---
-import '../styles/global.css';
+import Base from '../layouts/Base.astro';
 ---
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Scaffold check</title>
-  </head>
-  <body class="min-h-screen flex items-center justify-center">
-    <h1 class="text-display text-navy">Cream + Navy, Inter loaded.</h1>
-  </body>
-</html>
+<Base title="Home — Polarsteps-style Clone">
+  <section class="container-x section-pad">
+    <h1 class="text-hero">Travel the world. Keep every step.</h1>
+    <p class="mt-6 max-w-2xl text-xl text-navy-muted">
+      A marketing-site clone built with Astro and Tailwind.
+    </p>
+  </section>
+</Base>
