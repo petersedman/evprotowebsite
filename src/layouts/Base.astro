@@ -36,5 +36,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'http://localhost
       <slot />
     </main>
     <slot name="footer" />
+    <script>
+      import '../scripts/scroll';
+    </script>
   </body>
 </html>

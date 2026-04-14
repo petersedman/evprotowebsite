@@ -1,0 +1,44 @@
+---
+import PhoneFrame from '../PhoneFrame.astro';
+
+interface Screen {
+  src: string;
+  alt: string;
+  caption: string;
+}
+interface Props {
+  screens: Screen[];
+}
+const { screens } = Astro.props;
+---
+<section data-sticky-morph class="relative" style={`height: ${screens.length * 100}vh;`}>
+  <div class="sticky top-0 flex h-screen items-center justify-center">
+    <div class="container-x grid w-full items-center gap-12 lg:grid-cols-2">
+      <div class="relative h-[580px]">
+        {screens.map((s, i) => (
+          <div
+            data-morph-screen
+            class="absolute inset-0 flex items-center justify-center"
+            style={`opacity: ${i === 0 ? 1 : 0};`}
+          >
+            <PhoneFrame size="md">
+              <img src={s.src} alt={s.alt} class="h-full w-full object-cover" />
+            </PhoneFrame>
+          </div>
+        ))}
+      </div>
+      <div class="relative h-[220px]">
+        {screens.map((s, i) => (
+          <div
+            data-morph-screen
+            class="absolute inset-0"
+            style={`opacity: ${i === 0 ? 1 : 0};`}
+          >
+            <p class="text-xs font-semibold uppercase tracking-widest text-teal-dark">0{i + 1}</p>
+            <h3 class="mt-3 text-display">{s.caption}</h3>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
