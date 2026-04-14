@@ -4,6 +4,7 @@ import type { GetStaticPaths } from 'astro';
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { path } from '../../lib/url';
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection('blog');
@@ -28,7 +29,7 @@ const { Content } = await render(post);
       </div>
     </div>
     <div class="mt-12 overflow-hidden rounded-5xl">
-      <img src={post.data.cover} alt="" class="aspect-[16/9] w-full object-cover" />
+      <img src={path(post.data.cover)} alt="" class="aspect-[16/9] w-full object-cover" />
     </div>
     <div class="prose prose-lg mx-auto mt-12 max-w-3xl prose-headings:font-extrabold prose-headings:text-navy prose-p:text-navy prose-a:text-teal-dark">
       <Content />

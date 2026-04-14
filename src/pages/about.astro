@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import FadeInSection from '../components/scroll/FadeInSection.astro';
+import { path } from '../lib/url';
 
 const values = [
   { title: 'Travel stories worth keeping', body: 'Not another photo dump. Journals you will reopen in ten years.' },
@@ -18,10 +19,10 @@ const stats = [
 ];
 
 const team = [
-  { name: 'Elena Ruiz', role: 'Co-founder & CEO', img: '/images/team-1.jpg' },
-  { name: 'Jonas Beck', role: 'Co-founder & CTO', img: '/images/team-2.jpg' },
-  { name: 'Amara Okafor', role: 'Head of Design', img: '/images/team-3.jpg' },
-  { name: 'Yuto Saito', role: 'Head of Mobile', img: '/images/team-4.jpg' },
+  { name: 'Elena Ruiz', role: 'Co-founder & CEO', img: path('/images/team-1.jpg') },
+  { name: 'Jonas Beck', role: 'Co-founder & CTO', img: path('/images/team-2.jpg') },
+  { name: 'Amara Okafor', role: 'Head of Design', img: path('/images/team-3.jpg') },
+  { name: 'Yuto Saito', role: 'Head of Mobile', img: path('/images/team-4.jpg') },
 ];
 ---
 <Base title="About — Tripsteps">

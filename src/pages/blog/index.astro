@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import FadeInSection from '../../components/scroll/FadeInSection.astro';
+import { path } from '../../lib/url';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
@@ -29,9 +30,9 @@ const categories = ['All', ...new Set(posts.map((p) => p.data.category))];
     <section class="container-x pb-24">
       <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
-          <a href={`/blog/${post.id}`} class="group block overflow-hidden rounded-4xl bg-white ring-1 ring-navy/5 transition hover:-translate-y-1 hover:shadow-xl">
+          <a href={path(`/blog/${post.id}`)} class="group block overflow-hidden rounded-4xl bg-white ring-1 ring-navy/5 transition hover:-translate-y-1 hover:shadow-xl">
             <div class="aspect-[4/3] overflow-hidden">
-              <img src={post.data.cover} alt="" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
+              <img src={path(post.data.cover)} alt="" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
             </div>
             <div class="p-6">
               <div class="text-xs font-semibold uppercase tracking-widest text-teal-dark">{post.data.category}</div>

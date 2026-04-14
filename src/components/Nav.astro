@@ -1,5 +1,6 @@
 ---
 import { Menu, X } from 'lucide-astro';
+import { path } from '../lib/url';
 
 const links = [
   { href: '/travel-book', label: 'Travel Book' },
@@ -16,7 +17,7 @@ const currentPath = Astro.url.pathname;
   class="sticky top-0 z-40 bg-cream/85 backdrop-blur transition-shadow duration-200"
 >
   <div class="container-x flex h-16 items-center justify-between md:h-20">
-    <a href="/" class="flex items-center gap-2 font-extrabold tracking-tight text-navy">
+    <a href={path('/')} class="flex items-center gap-2 font-extrabold tracking-tight text-navy">
       <span class="inline-block h-7 w-7 rounded-full bg-navy">
         <span class="block h-full w-full scale-[0.4] rounded-full bg-teal"></span>
       </span>
@@ -25,7 +26,7 @@ const currentPath = Astro.url.pathname;
     <nav class="hidden items-center gap-8 md:flex">
       {links.map(({ href, label }) => (
         <a
-          href={href}
+          href={path(href)}
           class:list={[
             'text-sm font-medium transition-colors hover:text-teal-dark',
             currentPath.startsWith(href) ? 'text-teal-dark' : 'text-navy',
@@ -38,7 +39,7 @@ const currentPath = Astro.url.pathname;
     <div class="flex items-center gap-3">
       <a href="#" class="hidden text-sm font-medium text-navy md:inline">Log in</a>
       <a
-        href="/download"
+        href={path('/download')}
         class="hidden rounded-full bg-navy px-5 py-2.5 text-sm font-semibold text-cream transition hover:-translate-y-0.5 hover:shadow-lg md:inline-block"
       >
         Get the app
@@ -67,8 +68,8 @@ const currentPath = Astro.url.pathname;
       </button>
     </div>
     <div class="container-x flex flex-1 flex-col gap-6 pt-8 text-3xl font-extrabold text-navy">
-      {links.map(({ href, label }) => <a href={href}>{label}</a>)}
-      <a href="/download" class="mt-auto mb-12 rounded-full bg-navy px-6 py-4 text-center text-cream">
+      {links.map(({ href, label }) => <a href={path(href)}>{label}</a>)}
+      <a href={path('/download')} class="mt-auto mb-12 rounded-full bg-navy px-6 py-4 text-center text-cream">
         Get the app
       </a>
     </div>

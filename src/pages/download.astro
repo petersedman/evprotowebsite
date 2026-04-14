@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import PhoneFrame from '../components/PhoneFrame.astro';
 import FadeInSection from '../components/scroll/FadeInSection.astro';
 import { Apple, Smartphone, Wifi, BatteryFull, Map, Camera } from 'lucide-astro';
+import { path } from '../lib/url';
 
 const featureTiles = [
   { icon: Map, title: 'Auto-tracked route', body: 'Background GPS draws your path in real time.' },
@@ -41,13 +42,13 @@ const featureTiles = [
           </a>
         </div>
         <div class="mt-10 flex items-center gap-6">
-          <img src="/mockups/qr.svg" alt="QR code placeholder" class="h-32 w-32 rounded-2xl bg-white p-3 ring-1 ring-navy/10" />
+          <img src={path('/mockups/qr.svg')} alt="QR code placeholder" class="h-32 w-32 rounded-2xl bg-white p-3 ring-1 ring-navy/10" />
           <p class="max-w-[200px] text-sm text-navy-muted">Point your camera here to open the download page on your phone.</p>
         </div>
       </div>
       <div class="flex justify-center">
         <PhoneFrame size="lg">
-          <img src="/mockups/screen-map.svg" alt="App map view preview" class="h-full w-full object-cover" />
+          <img src={path('/mockups/screen-map.svg')} alt="App map view preview" class="h-full w-full object-cover" />
         </PhoneFrame>
       </div>
     </div>

@@ -6,6 +6,7 @@ import Button from '../components/Button.astro';
 import FeatureRow from '../components/FeatureRow.astro';
 import FAQ from '../components/FAQ.astro';
 import FadeInSection from '../components/scroll/FadeInSection.astro';
+import { path } from '../lib/url';
 
 const steps = [
   { n: 1, title: 'Travel', body: 'Let the app track the trip in the background.' },
@@ -34,7 +35,7 @@ const faq = [
       <Button href="#preview" variant="ghost" size="lg">See a sample</Button>
     </div>
     <div class="mt-16 overflow-hidden rounded-5xl shadow-2xl">
-      <img src="/images/book-1.jpg" alt="Open photo book on a wooden table" class="aspect-[16/9] w-full object-cover" />
+      <img src={path('/images/book-1.jpg')} alt="Open photo book on a wooden table" class="aspect-[16/9] w-full object-cover" />
     </div>
   </section>
 
@@ -44,7 +45,7 @@ const faq = [
         eyebrow="Sample spreads"
         title="Designed for reading, not just scrolling."
         body="Each spread mixes your photos with the day's map and notes. Typography is tuned for travel writing — big captions, generous margins, no AI slop."
-        image="/images/book-2.jpg"
+        image={path('/images/book-2.jpg')}
         alt="Close-up of a printed photo book spread"
       />
     </section>
@@ -72,7 +73,7 @@ const faq = [
         <p class="mx-auto mt-5 max-w-xl text-lg text-cream/70">
           Open the app, pick a trip, and hit "Make book." We will handle the layout.
         </p>
-        <div class="mt-8"><Button href="/download" variant="secondary" size="lg">Start a book</Button></div>
+        <div class="mt-8"><Button href={path('/download')} variant="secondary" size="lg">Start a book</Button></div>
       </div>
     </section>
   </FadeInSection>

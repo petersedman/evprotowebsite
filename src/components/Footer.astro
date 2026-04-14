@@ -1,5 +1,6 @@
 ---
 import { Instagram, Facebook, Twitter, Youtube } from 'lucide-astro';
+import { path } from '../lib/url';
 
 const columns = [
   {
@@ -43,7 +44,7 @@ const year = new Date().getFullYear();
   <div class="container-x py-16 lg:py-24">
     <div class="grid gap-12 lg:grid-cols-[1.5fr_repeat(4,1fr)]">
       <div>
-        <a href="/" class="flex items-center gap-2 text-xl font-extrabold">
+        <a href={path('/')} class="flex items-center gap-2 text-xl font-extrabold">
           <span class="inline-block h-7 w-7 rounded-full bg-cream">
             <span class="block h-full w-full scale-[0.4] rounded-full bg-teal"></span>
           </span>
@@ -68,7 +69,7 @@ const year = new Date().getFullYear();
           <h4 class="text-xs font-semibold uppercase tracking-wider text-cream/60">{col.title}</h4>
           <ul class="mt-4 space-y-3">
             {col.links.map((l) => (
-              <li><a href={l.href} class="text-cream/90 hover:text-teal">{l.label}</a></li>
+              <li><a href={path(l.href)} class="text-cream/90 hover:text-teal">{l.label}</a></li>
             ))}
           </ul>
         </div>
