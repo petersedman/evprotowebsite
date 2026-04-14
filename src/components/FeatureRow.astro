@@ -1,0 +1,22 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  body: string;
+  image: string;
+  alt: string;
+  reverse?: boolean;
+}
+
+const { eyebrow, title, body, image, alt, reverse = false } = Astro.props;
+---
+<div class={`grid items-center gap-10 lg:grid-cols-2 lg:gap-20 ${reverse ? 'lg:[&>div:first-child]:order-2' : ''}`}>
+  <div>
+    {eyebrow && <p class="text-xs font-semibold uppercase tracking-widest text-teal-dark">{eyebrow}</p>}
+    <h3 class="mt-3 text-display">{title}</h3>
+    <p class="mt-5 max-w-lg text-lg text-navy-muted">{body}</p>
+  </div>
+  <div class="overflow-hidden rounded-4xl">
+    <img src={image} alt={alt} class="aspect-[4/3] w-full object-cover" loading="lazy" />
+  </div>
+</div>

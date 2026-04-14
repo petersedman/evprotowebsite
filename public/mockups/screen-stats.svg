@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 580" preserveAspectRatio="xMidYMid slice">
+  <rect width="280" height="580" fill="#00293D"/>
+  <text x="24" y="64" font-family="Inter,sans-serif" font-size="14" fill="#FFF2E5" opacity="0.7">Your year</text>
+  <text x="24" y="108" font-family="Inter,sans-serif" font-size="40" font-weight="800" fill="#FFF2E5">14</text>
+  <text x="24" y="136" font-family="Inter,sans-serif" font-size="14" fill="#00DB9A">countries</text>
+  <text x="140" y="108" font-family="Inter,sans-serif" font-size="40" font-weight="800" fill="#FFF2E5">28,412</text>
+  <text x="140" y="136" font-family="Inter,sans-serif" font-size="14" fill="#00DB9A">km travelled</text>
+  <rect x="24" y="180" width="232" height="8" rx="4" fill="#FFF2E5" opacity="0.15"/>
+  <rect x="24" y="180" width="168" height="8" rx="4" fill="#00DB9A"/>
+  <rect x="24" y="220" width="232" height="120" rx="16" fill="#FFF2E5" opacity="0.08"/>
+  <polyline points="36,320 80,290 124,300 168,260 212,280 244,240" stroke="#00DB9A" stroke-width="3" fill="none"/>
+  <rect x="24" y="360" width="232" height="180" rx="16" fill="#FFF2E5" opacity="0.08"/>
+  <circle cx="90" cy="450" r="56" fill="#00DB9A" opacity="0.8"/>
+  <path d="M90 394 A 56 56 0 0 1 138 478 L 90 450 Z" fill="#E60F3D"/>
+</svg>

@@ -1,0 +1,11 @@
+---
+const logos = ['Wired', 'The Verge', 'TechCrunch', 'Condé Nast', 'Lonely Planet', 'Outside'];
+---
+<div class="container-x section-pad">
+  <p class="text-center text-xs font-semibold uppercase tracking-widest text-navy/50">Featured in</p>
+  <div class="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-6 opacity-70">
+    {logos.map((name) => (
+      <span class="text-xl font-extrabold tracking-tight text-navy/70">{name}</span>
+    ))}
+  </div>
+</div>

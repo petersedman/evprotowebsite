@@ -1,0 +1,20 @@
+---
+interface Props {
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+}
+
+const { size = 'md', class: className = '' } = Astro.props;
+
+const sizes = {
+  sm: 'w-[220px] h-[460px] rounded-[36px] p-2',
+  md: 'w-[280px] h-[580px] rounded-[44px] p-2.5',
+  lg: 'w-[340px] h-[700px] rounded-[52px] p-3',
+};
+---
+<div class={`relative bg-navy shadow-2xl ${sizes[size]} ${className}`}>
+  <div class="absolute left-1/2 top-2 h-5 w-24 -translate-x-1/2 rounded-full bg-navy z-10"></div>
+  <div class="h-full w-full overflow-hidden rounded-[inherit] bg-cream">
+    <slot />
+  </div>
+</div>

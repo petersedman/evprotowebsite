@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 580" preserveAspectRatio="xMidYMid slice">
+  <rect width="280" height="580" fill="#FFF2E5"/>
+  <line x1="40" y1="80" x2="40" y2="540" stroke="#00293D" stroke-width="2" stroke-dasharray="3 5"/>
+  <g>
+    <circle cx="40" cy="120" r="10" fill="#00DB9A"/>
+    <rect x="70" y="100" width="180" height="60" rx="14" fill="#FFF"/>
+    <rect x="84" y="114" width="80" height="10" rx="5" fill="#00293D"/>
+    <rect x="84" y="134" width="130" height="8" rx="4" fill="#00293D" opacity="0.5"/>
+  </g>
+  <g>
+    <circle cx="40" cy="240" r="10" fill="#00DB9A"/>
+    <rect x="70" y="220" width="180" height="60" rx="14" fill="#FFF"/>
+    <rect x="84" y="234" width="100" height="10" rx="5" fill="#00293D"/>
+    <rect x="84" y="254" width="110" height="8" rx="4" fill="#00293D" opacity="0.5"/>
+  </g>
+  <g>
+    <circle cx="40" cy="360" r="10" fill="#E60F3D"/>
+    <rect x="70" y="340" width="180" height="60" rx="14" fill="#FFF"/>
+    <rect x="84" y="354" width="90" height="10" rx="5" fill="#00293D"/>
+    <rect x="84" y="374" width="140" height="8" rx="4" fill="#00293D" opacity="0.5"/>
+  </g>
+  <g>
+    <circle cx="40" cy="480" r="10" fill="#00DB9A"/>
+    <rect x="70" y="460" width="180" height="60" rx="14" fill="#FFF"/>
+    <rect x="84" y="474" width="70" height="10" rx="5" fill="#00293D"/>
+    <rect x="84" y="494" width="120" height="8" rx="4" fill="#00293D" opacity="0.5"/>
+  </g>
+</svg>

@@ -1,0 +1,46 @@
+---
+import { Check } from 'lucide-astro';
+import Button from './Button.astro';
+
+interface Props {
+  name: string;
+  price: string;
+  period: string;
+  features: string[];
+  cta: string;
+  ctaHref?: string;
+  highlight?: boolean;
+}
+
+const { name, price, period, features, cta, ctaHref = '#', highlight = false } = Astro.props;
+---
+<div
+  class:list={[
+    'flex flex-col rounded-4xl p-8 ring-1',
+    highlight ? 'bg-navy text-cream ring-navy shadow-xl' : 'bg-cream text-navy ring-navy/10',
+  ]}
+>
+  <h3 class="text-2xl font-extrabold">{name}</h3>
+  <div class="mt-6 flex items-baseline gap-1">
+    <span class="text-5xl font-extrabold">{price}</span>
+    <span class={highlight ? 'text-cream/70' : 'text-navy-muted'}>/{period}</span>
+  </div>
+  <ul class="mt-8 flex-1 space-y-3">
+    {features.map((f) => (
+      <li class="flex items-start gap-3">
+        <Check size={20} class:list={[highlight ? 'text-teal' : 'text-teal-dark', 'mt-0.5 shrink-0']} />
+        <span class={highlight ? 'text-cream/90' : 'text-navy'}>{f}</span>
+      </li>
+    ))}
+  </ul>
+  <div class="mt-8">
+    <Button
+      href={ctaHref}
+      variant={highlight ? 'secondary' : 'primary'}
+      size="lg"
+      class="w-full"
+    >
+      {cta}
+    </Button>
+  </div>
+</div>
