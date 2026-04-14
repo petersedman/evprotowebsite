@@ -1,0 +1,96 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import PricingCard from '../components/PricingCard.astro';
+import FAQ from '../components/FAQ.astro';
+import FadeInSection from '../components/scroll/FadeInSection.astro';
+import { Check, X } from 'lucide-astro';
+
+const rows = [
+  { feature: 'Unlimited trip tracking', free: true, pro: true },
+  { feature: 'Live trip sharing', free: true, pro: true },
+  { feature: 'Offline maps', free: false, pro: true },
+  { feature: '4K photo uploads', free: false, pro: true },
+  { feature: 'Custom trip cover designs', free: false, pro: true },
+  { feature: 'Priority book printing', free: false, pro: true },
+  { feature: 'Advanced trip stats', free: false, pro: true },
+];
+
+const faq = [
+  { q: 'Can I cancel anytime?', a: 'Yes. Premium cancels instantly; you keep access to the end of the billing period.' },
+  { q: 'Does Premium include the travel book?', a: 'No — the book is a separate one-off purchase. Premium does give you priority printing.' },
+  { q: 'Is there a free trial?', a: 'Yes, 14 days of Premium with full access. No card required to start.' },
+];
+---
+<Base title="Premium — Tripsteps">
+  <Nav slot="nav" />
+
+  <section class="container-x section-pad text-center">
+    <p class="text-xs font-semibold uppercase tracking-widest text-teal-dark">Premium</p>
+    <h1 class="mx-auto mt-4 max-w-4xl text-hero">Everything Tripsteps can do, unlocked.</h1>
+    <p class="mx-auto mt-6 max-w-2xl text-xl text-navy-muted">
+      Offline maps for the back roads. 4K photos for the ones worth keeping. Priority on your book when you want to gift it.
+    </p>
+  </section>
+
+  <FadeInSection>
+    <section class="container-x section-pad">
+      <div class="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
+        <PricingCard
+          name="Free"
+          price="$0"
+          period="forever"
+          features={['Unlimited trips', 'Live sharing', 'Standard photo quality', 'Basic trip stats']}
+          cta="Download the app"
+          ctaHref="/download"
+        />
+        <PricingCard
+          name="Premium"
+          price="$29"
+          period="year"
+          features={['Everything in Free', 'Offline maps', '4K photo uploads', 'Priority book printing', 'Advanced stats']}
+          cta="Start 14-day trial"
+          ctaHref="/download"
+          highlight
+        />
+      </div>
+    </section>
+  </FadeInSection>
+
+  <FadeInSection>
+    <section class="container-x section-pad">
+      <h2 class="text-center text-display">Free vs Premium.</h2>
+      <div class="mx-auto mt-12 max-w-3xl overflow-hidden rounded-4xl ring-1 ring-navy/10">
+        <table class="w-full text-left">
+          <thead class="bg-navy text-cream">
+            <tr>
+              <th class="px-6 py-4 font-semibold">Feature</th>
+              <th class="px-6 py-4 text-center font-semibold">Free</th>
+              <th class="px-6 py-4 text-center font-semibold">Premium</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-navy/10 bg-white">
+            {rows.map(({ feature, free, pro }) => (
+              <tr>
+                <td class="px-6 py-4">{feature}</td>
+                <td class="px-6 py-4 text-center">
+                  {free ? <Check class="mx-auto text-teal-dark" size={20} /> : <X class="mx-auto text-navy/25" size={20} />}
+                </td>
+                <td class="px-6 py-4 text-center">
+                  {pro ? <Check class="mx-auto text-teal-dark" size={20} /> : <X class="mx-auto text-navy/25" size={20} />}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </FadeInSection>
+
+  <FadeInSection>
+    <FAQ items={faq} />
+  </FadeInSection>
+
+  <Footer slot="footer" />
+</Base>
