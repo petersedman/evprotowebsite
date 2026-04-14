@@ -2,14 +2,152 @@
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
+import FeatureRow from '../components/FeatureRow.astro';
+import Testimonial from '../components/Testimonial.astro';
+import PressLogos from '../components/PressLogos.astro';
+import FadeInSection from '../components/scroll/FadeInSection.astro';
+import ParallaxImage from '../components/scroll/ParallaxImage.astro';
+import StickyPhoneMorph from '../components/scroll/StickyPhoneMorph.astro';
+
+const testimonials = [
+  {
+    quote: 'I came home with 2,000 photos and no idea what order anything happened in. Tripsteps sorted every step by itself.',
+    author: 'Ines Carvalho',
+    role: 'Six months in Southeast Asia',
+    avatar: '/images/avatar-1.jpg',
+  },
+  {
+    quote: 'My parents followed along from the other side of the world without me lifting a finger. That alone paid for the trip.',
+    author: 'Marcus Lindqvist',
+    role: 'Van life across Patagonia',
+    avatar: '/images/avatar-2.jpg',
+  },
+  {
+    quote: 'The printed book arrived three weeks after I got home. Flipping through it feels like being back on the road.',
+    author: 'Priya Shah',
+    role: 'Weekend trips, monthly summaries',
+    avatar: '/images/avatar-3.jpg',
+  },
+];
+
+const morphScreens = [
+  { src: '/mockups/screen-map.svg', alt: 'Map showing a travel route', caption: 'Your route draws itself as you walk.' },
+  { src: '/mockups/screen-timeline.svg', alt: 'Chronological timeline of trip stops', caption: 'Every stop, in the order it happened.' },
+  { src: '/mockups/screen-journal.svg', alt: 'Trip journal entry with photos', caption: 'Photos and notes collected in one place.' },
+  { src: '/mockups/screen-stats.svg', alt: 'Annual travel statistics dashboard', caption: 'Look back and see the whole year.' },
+];
 ---
-<Base title="Home — Polarsteps-style Clone">
+<Base title="Tripsteps — Travel the world. Keep every step.">
   <Nav slot="nav" />
-  <section class="container-x section-pad">
-    <h1 class="text-hero">Travel the world. Keep every step.</h1>
-    <p class="mt-6 max-w-2xl text-xl text-navy-muted">
-      A marketing-site clone built with Astro and Tailwind.
+
+  <section class="container-x section-pad text-center">
+    <p class="text-xs font-semibold uppercase tracking-widest text-teal-dark">Travel journal · Automatic tracking</p>
+    <h1 class="mx-auto mt-4 max-w-5xl text-hero">Travel the world. Keep every step.</h1>
+    <p class="mx-auto mt-6 max-w-2xl text-xl text-navy-muted">
+      A travel journal that writes itself. Drop your phone in a pocket — we map the route, collect the photos, and make a keepsake at the end.
     </p>
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+      <Button href="/download" variant="primary" size="lg">Get the app</Button>
+      <Button href="/travel-book" variant="ghost" size="lg">See the travel book</Button>
+    </div>
+    <div class="mt-16 overflow-hidden rounded-5xl shadow-2xl">
+      <ParallaxImage src="/images/hero.jpg" alt="Traveller overlooking a mountain landscape at sunrise" class="aspect-[16/9]" speed={0.25} />
+    </div>
   </section>
+
+  <FadeInSection>
+    <PressLogos />
+  </FadeInSection>
+
+  <FadeInSection>
+    <section class="container-x section-pad text-center">
+      <h2 class="mx-auto max-w-3xl text-display">Three ways to keep the trip.</h2>
+      <p class="mx-auto mt-5 max-w-2xl text-lg text-navy-muted">
+        Auto-tracked, beautifully shared, and printed at the end.
+      </p>
+      <div class="mt-16 grid gap-8 md:grid-cols-3">
+        <div class="rounded-4xl bg-white p-8 text-left ring-1 ring-navy/5">
+          <div class="inline-flex rounded-full bg-teal/20 p-3"><span class="block h-3 w-3 rounded-full bg-teal-dark"></span></div>
+          <h3 class="mt-6 text-2xl font-extrabold">Tracked for you</h3>
+          <p class="mt-3 text-navy-muted">Leave the app in your pocket. Your route draws itself as you move.</p>
+        </div>
+        <div class="rounded-4xl bg-white p-8 text-left ring-1 ring-navy/5">
+          <div class="inline-flex rounded-full bg-red/15 p-3"><span class="block h-3 w-3 rounded-full bg-red"></span></div>
+          <h3 class="mt-6 text-2xl font-extrabold">Shared live</h3>
+          <p class="mt-3 text-navy-muted">One link lets the whole family ride along, with no sign-up required.</p>
+        </div>
+        <div class="rounded-4xl bg-white p-8 text-left ring-1 ring-navy/5">
+          <div class="inline-flex rounded-full bg-navy/10 p-3"><span class="block h-3 w-3 rounded-full bg-navy"></span></div>
+          <h3 class="mt-6 text-2xl font-extrabold">Printed forever</h3>
+          <p class="mt-3 text-navy-muted">Turn the whole thing into a hardcover book you will flip through for years.</p>
+        </div>
+      </div>
+    </section>
+  </FadeInSection>
+
+  <StickyPhoneMorph screens={morphScreens} />
+
+  <FadeInSection>
+    <section class="container-x section-pad">
+      <FeatureRow
+        eyebrow="Tracked for you"
+        title="Your route, drawn by walking."
+        body="Start a trip and forget about it. Tripsteps stitches your movement into a living map — streets, ferries, mountain passes, dusty roads. The line grows while you do."
+        image="/images/feature-1.jpg"
+        alt="Winding mountain road at golden hour"
+      />
+    </section>
+  </FadeInSection>
+
+  <FadeInSection>
+    <section class="container-x section-pad">
+      <FeatureRow
+        eyebrow="Shared live"
+        title="One link. Everyone is invited."
+        body="Family, friends, that one cousin who worries — they can follow along in the browser. No account, no app, no friction."
+        image="/images/feature-2.jpg"
+        alt="Two friends looking at a map"
+        reverse
+      />
+    </section>
+  </FadeInSection>
+
+  <FadeInSection>
+    <section class="container-x section-pad">
+      <FeatureRow
+        eyebrow="Printed forever"
+        title="A book you will actually open."
+        body="When the trip is over, we print the highlight reel. Photos, words, and that beautiful meandering line — bound in a hardcover that lives on the shelf, not in a cloud."
+        image="/images/feature-3.jpg"
+        alt="Hands holding an open photo book"
+      />
+    </section>
+  </FadeInSection>
+
+  <FadeInSection>
+    <section class="container-x section-pad">
+      <h2 class="text-center text-display">Road-tested by thousands.</h2>
+      <div class="mt-16 grid gap-6 md:grid-cols-3">
+        {testimonials.map((t) => <Testimonial {...t} />)}
+      </div>
+    </section>
+  </FadeInSection>
+
+  <FadeInSection>
+    <section class="container-x section-pad">
+      <div class="rounded-5xl bg-navy p-10 text-center text-cream md:p-16">
+        <h2 class="mx-auto max-w-3xl text-display">Your next trip deserves to be remembered.</h2>
+        <p class="mx-auto mt-5 max-w-xl text-lg text-cream/70">
+          Install Tripsteps, start a trip, and forget about it. We will take it from here.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <Button href="/download" variant="secondary" size="lg">Download the app</Button>
+          <Button href="/travel-book" variant="ghost" size="lg" class="border-cream/40 !text-cream hover:!bg-cream hover:!text-navy">Learn about the book</Button>
+        </div>
+      </div>
+    </section>
+  </FadeInSection>
+
   <Footer slot="footer" />
 </Base>
