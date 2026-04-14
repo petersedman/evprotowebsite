@@ -38,16 +38,27 @@ const initParallax = () => {
 
 const initStickyMorph = () => {
   document.querySelectorAll<HTMLElement>('[data-sticky-morph]').forEach((container) => {
-    const screens = container.querySelectorAll<HTMLElement>('[data-morph-screen]');
-    if (screens.length === 0) return;
+    const elements = Array.from(container.querySelectorAll<HTMLElement>('[data-morph-screen]'));
+    if (elements.length === 0) return;
+
+    const stepCount = Math.max(...elements.map((el) => Number(el.dataset.morphStep ?? 0))) + 1;
+    const groups: HTMLElement[][] = Array.from({ length: stepCount }, () => []);
+    elements.forEach((el) => {
+      const i = Number(el.dataset.morphStep ?? 0);
+      groups[i].push(el);
+    });
+
     if (reduced) {
-      screens.forEach((s, i) => { s.style.opacity = i === 0 ? '1' : '0'; });
+      groups.forEach((group, i) => {
+        group.forEach((el) => { el.style.opacity = i === 0 ? '1' : '0'; });
+      });
       return;
     }
-    const step = 1 / screens.length;
+
+    const step = 1 / stepCount;
     // @ts-expect-error motion scroll types may not match runtime signature
     scroll((progress: number) => {
-      screens.forEach((screen, i) => {
+      for (let i = 0; i < stepCount; i++) {
         const localStart = i * step;
         const localEnd = (i + 1) * step;
         let opacity = 0;
@@ -56,9 +67,10 @@ const initStickyMorph = () => {
           opacity = t < 0.5 ? t * 2 : (1 - t) * 2;
         }
         if (i === 0 && progress < step * 0.5) opacity = 1 - progress / (step * 0.5);
-        if (i === screens.length - 1 && progress > 1 - step * 0.5) opacity = (progress - (1 - step * 0.5)) / (step * 0.5);
-        screen.style.opacity = String(Math.max(0, Math.min(1, opacity)));
-      });
+        if (i === stepCount - 1 && progress > 1 - step * 0.5) opacity = (progress - (1 - step * 0.5)) / (step * 0.5);
+        const clamped = String(Math.max(0, Math.min(1, opacity)));
+        groups[i].forEach((el) => { el.style.opacity = clamped; });
+      }
     }, { target: container, offset: ['start start', 'end end'] });
   });
 };

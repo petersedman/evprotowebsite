@@ -18,6 +18,7 @@ const { screens } = Astro.props;
         {screens.map((s, i) => (
           <div
             data-morph-screen
+            data-morph-step={i}
             class="absolute inset-0 flex items-center justify-center"
             style={`opacity: ${i === 0 ? 1 : 0};`}
           >
@@ -31,6 +32,7 @@ const { screens } = Astro.props;
         {screens.map((s, i) => (
           <div
             data-morph-screen
+            data-morph-step={i}
             class="absolute inset-0"
             style={`opacity: ${i === 0 ? 1 : 0};`}
           >
