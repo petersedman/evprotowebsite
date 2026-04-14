@@ -90,6 +90,13 @@ const currentPath = Astro.url.pathname;
     menu?.classList.remove('flex');
   });
 
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !menu?.classList.contains('hidden')) {
+      menu?.classList.add('hidden');
+      menu?.classList.remove('flex');
+    }
+  });
+
   const onScroll = () => {
     if (!header) return;
     if (window.scrollY > 4) header.classList.add('shadow-sm');
