@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #FFF2E5;
+  --color-navy: #00293D;
+  --color-navy-muted: rgba(0, 41, 61, 0.72);
+  --color-teal: #00DB9A;
+  --color-teal-dark: #00B07B;
+  --color-red: #E60F3D;
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  --text-display: clamp(2.5rem, 6vw, 5rem);
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.02em;
+  --text-display--font-weight: 800;
+
+  --text-hero: clamp(3rem, 8vw, 6.5rem);
+  --text-hero--line-height: 1.02;
+  --text-hero--letter-spacing: -0.03em;
+  --text-hero--font-weight: 800;
+
+  --radius-4xl: 2rem;
+  --radius-5xl: 2.5rem;
+
+  --max-width-8xl: 88rem;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-cream text-navy font-sans antialiased; }
+  :focus-visible { @apply outline-2 outline-offset-2 outline-teal; }
+}
+
+@layer utilities {
+  .section-pad { @apply py-12 md:py-16 lg:py-24; }
+  .container-x { @apply mx-auto max-w-8xl px-5 md:px-8 lg:px-12; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
