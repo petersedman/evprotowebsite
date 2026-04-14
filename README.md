@@ -1,7 +1,7 @@
 # Tripsteps Marketing Clone
 
 A static marketing site built with Astro + Tailwind CSS as a visual study of polarsteps.com.
-All copy is original and imagery is placeholder (Unsplash). No copyrighted assets.
+All copy is original and imagery is placeholder (Unsplash). No copyrighted assets
 
 ## Pages
 
