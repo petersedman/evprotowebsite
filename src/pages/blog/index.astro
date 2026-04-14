@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import FadeInSection from '../../components/scroll/FadeInSection.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+const categories = ['All', ...new Set(posts.map((p) => p.data.category))];
+---
+<Base title="Blog — Tripsteps">
+  <Nav slot="nav" />
+
+  <section class="container-x section-pad">
+    <p class="text-xs font-semibold uppercase tracking-widest text-teal-dark">The Tripsteps blog</p>
+    <h1 class="mt-4 text-hero">Travel, written down.</h1>
+
+    <div class="mt-10 flex flex-wrap gap-2">
+      {categories.map((cat) => (
+        <span class="rounded-full border border-navy/15 px-4 py-2 text-sm text-navy/80">{cat}</span>
+      ))}
+    </div>
+  </section>
+
+  <FadeInSection>
+    <section class="container-x pb-24">
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post) => (
+          <a href={`/blog/${post.id}`} class="group block overflow-hidden rounded-4xl bg-white ring-1 ring-navy/5 transition hover:-translate-y-1 hover:shadow-xl">
+            <div class="aspect-[4/3] overflow-hidden">
+              <img src={post.data.cover} alt="" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
+            </div>
+            <div class="p-6">
+              <div class="text-xs font-semibold uppercase tracking-widest text-teal-dark">{post.data.category}</div>
+              <h2 class="mt-3 text-xl font-extrabold leading-tight">{post.data.title}</h2>
+              <p class="mt-3 text-navy-muted">{post.data.excerpt}</p>
+              <div class="mt-5 text-sm text-navy/60">
+                {post.data.author} · {post.data.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  </FadeInSection>
+
+  <Footer slot="footer" />
+</Base>

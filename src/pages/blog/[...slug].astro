@@ -1,0 +1,39 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+<Base title={`${post.data.title} — Tripsteps`} description={post.data.excerpt} image={post.data.cover}>
+  <Nav slot="nav" />
+
+  <article class="container-x pb-24">
+    <div class="mx-auto max-w-3xl pt-12">
+      <p class="text-xs font-semibold uppercase tracking-widest text-teal-dark">{post.data.category}</p>
+      <h1 class="mt-4 text-display">{post.data.title}</h1>
+      <div class="mt-5 text-sm text-navy/60">
+        {post.data.author} · {post.data.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+      </div>
+    </div>
+    <div class="mt-12 overflow-hidden rounded-5xl">
+      <img src={post.data.cover} alt="" class="aspect-[16/9] w-full object-cover" />
+    </div>
+    <div class="prose prose-lg mx-auto mt-12 max-w-3xl prose-headings:font-extrabold prose-headings:text-navy prose-p:text-navy prose-a:text-teal-dark">
+      <Content />
+    </div>
+  </article>
+
+  <Footer slot="footer" />
+</Base>
