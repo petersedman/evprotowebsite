@@ -7,8 +7,7 @@ import FeatureRow from '../components/FeatureRow.astro';
 import Testimonial from '../components/Testimonial.astro';
 import PressLogos from '../components/PressLogos.astro';
 import FadeInSection from '../components/scroll/FadeInSection.astro';
-import ParallaxImage from '../components/scroll/ParallaxImage.astro';
-import StickyPhoneMorph from '../components/scroll/StickyPhoneMorph.astro';
+import HeroPhoneMorph from '../components/scroll/HeroPhoneMorph.astro';
 import { path } from '../lib/url';
 
 const testimonials = [
@@ -42,20 +41,15 @@ const morphScreens = [
 <Base title="Tripsteps — Travel the world. Keep every step.">
   <Nav slot="nav" />
 
-  <section class="container-x section-pad text-center">
-    <p class="text-xs font-semibold uppercase tracking-widest text-teal-dark">Travel journal · Automatic tracking</p>
-    <h1 class="mx-auto mt-4 max-w-5xl text-hero">Travel the world. Keep every step.</h1>
-    <p class="mx-auto mt-6 max-w-2xl text-xl text-navy-muted">
-      A travel journal that writes itself. Drop your phone in a pocket — we map the route, collect the photos, and make a keepsake at the end.
-    </p>
-    <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
-      <Button href={path('/download')} variant="primary" size="lg">Get the app</Button>
-      <Button href={path('/travel-book')} variant="ghost" size="lg">See the travel book</Button>
-    </div>
-    <div class="mt-16 overflow-hidden rounded-5xl shadow-2xl">
-      <ParallaxImage src={path('/images/hero.jpg')} alt="Traveller overlooking a mountain landscape at sunrise" class="aspect-[16/9]" speed={0.25} />
-    </div>
-  </section>
+  <HeroPhoneMorph
+    screens={morphScreens}
+    bgImage={path('/images/hero.jpg')}
+    bgAlt="Traveller overlooking a mountain landscape at sunrise"
+    title="Travel the world. Keep every step."
+    subtitle="A travel journal that writes itself. Drop your phone in a pocket — we map the route, collect the photos, and make a keepsake at the end."
+    ctaHref={path('/download')}
+    ctaLabel="Get the app"
+  />
 
   <FadeInSection>
     <PressLogos />
@@ -86,8 +80,6 @@ const morphScreens = [
       </div>
     </section>
   </FadeInSection>
-
-  <StickyPhoneMorph screens={morphScreens} />
 
   <FadeInSection>
     <section class="container-x section-pad">

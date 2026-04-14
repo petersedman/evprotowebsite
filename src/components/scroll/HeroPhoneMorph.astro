@@ -1,0 +1,122 @@
+---
+import PhoneFrame from '../PhoneFrame.astro';
+import Button from '../Button.astro';
+
+interface Screen { src: string; alt: string; caption: string; }
+interface Props {
+  screens: Screen[];
+  bgImage: string;
+  bgAlt: string;
+  title: string;
+  subtitle: string;
+  ctaHref: string;
+  ctaLabel: string;
+}
+const { screens, bgImage, bgAlt, title, subtitle, ctaHref, ctaLabel } = Astro.props;
+---
+<!-- Desktop: single pinned sequence -->
+<section
+  data-hero-morph
+  class="relative hidden lg:block"
+  style={`height: ${(1 + screens.length) * 100}vh;`}
+>
+  <div class="sticky top-0 h-screen overflow-hidden bg-cream">
+    <!-- Layer 1: background image -->
+    <div data-hero-bg class="absolute inset-0">
+      <img src={bgImage} alt={bgAlt} class="h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-navy/35"></div>
+    </div>
+
+    <!-- Layer 2: hero overlay (title + CTA) -->
+    <div data-hero-overlay class="pointer-events-none absolute inset-0 flex flex-col items-center justify-start pt-28 text-center">
+      <p class="text-xs font-semibold uppercase tracking-widest text-cream/80">Travel journal · Automatic tracking</p>
+      <h1 class="mx-auto mt-4 max-w-5xl text-hero text-cream drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)]">{title}</h1>
+      <p class="mx-auto mt-5 max-w-2xl text-xl text-cream/90 drop-shadow-[0_1px_6px_rgba(0,0,0,0.35)]">{subtitle}</p>
+      <div class="pointer-events-auto mt-8">
+        <Button href={ctaHref} variant="secondary" size="lg">{ctaLabel}</Button>
+      </div>
+    </div>
+
+    <!-- Layer 3: captions right column + invisible target marker for phone parked position -->
+    <div class="pointer-events-none absolute inset-0">
+      <div class="container-x grid h-full w-full items-center gap-12 lg:grid-cols-2">
+        <!-- Left grid column: invisible phone-parked target; script measures its center -->
+        <div class="relative h-[580px]">
+          <div data-hero-phone-target class="absolute inset-0"></div>
+        </div>
+        <!-- Right grid column: captions -->
+        <div class="relative h-[240px]">
+          {screens.map((s, i) => (
+            <div
+              data-morph-caption
+              data-morph-step={i}
+              class="absolute inset-0"
+              style="opacity: 0;"
+            >
+              <p class="text-xs font-semibold uppercase tracking-widest text-teal-dark">0{i + 1}</p>
+              <h3 class="mt-3 text-display">{s.caption}</h3>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Layer 4: phone (moves). Outer wrapper centers phone via CSS; inner wrapper takes JS transform. -->
+    <div class="pointer-events-none absolute inset-0">
+      <div class="absolute left-1/2 top-1/2" style="transform: translate(-50%, -50%);">
+        <div data-hero-phone class="will-change-transform" style="transform: translate3d(0, 40px, 0) scale(1.15);">
+          <div class="relative">
+            {screens.map((s, i) => (
+              <div
+                data-morph-screen
+                data-morph-step={i}
+                class={i === 0 ? '' : 'absolute inset-0'}
+                style={`opacity: ${i === 0 ? 1 : 0};`}
+              >
+                <PhoneFrame size="md">
+                  <img src={s.src} alt={s.alt} class="h-full w-full object-cover" />
+                </PhoneFrame>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mobile fallback: static hero + stacked feature list -->
+<section class="block lg:hidden">
+  <div class="relative overflow-hidden">
+    <img src={bgImage} alt={bgAlt} class="absolute inset-0 h-full w-full object-cover" />
+    <div class="absolute inset-0 bg-navy/40"></div>
+    <div class="relative container-x py-16 text-center">
+      <p class="text-xs font-semibold uppercase tracking-widest text-cream/80">Travel journal · Automatic tracking</p>
+      <h1 class="mx-auto mt-4 text-hero text-cream">{title}</h1>
+      <p class="mx-auto mt-5 max-w-xl text-lg text-cream/90">{subtitle}</p>
+      <div class="mt-8 flex justify-center">
+        <Button href={ctaHref} variant="secondary" size="lg">{ctaLabel}</Button>
+      </div>
+      <div class="mt-12 flex justify-center">
+        <PhoneFrame size="md">
+          <img src={screens[0].src} alt={screens[0].alt} class="h-full w-full object-cover" />
+        </PhoneFrame>
+      </div>
+    </div>
+  </div>
+  <div class="container-x section-pad space-y-16">
+    {screens.map((s, i) => (
+      <div class="grid items-center gap-8 sm:grid-cols-[auto_1fr]">
+        <div class="flex justify-center">
+          <PhoneFrame size="sm">
+            <img src={s.src} alt={s.alt} class="h-full w-full object-cover" />
+          </PhoneFrame>
+        </div>
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-widest text-teal-dark">0{i + 1}</p>
+          <h3 class="mt-3 text-3xl font-extrabold leading-tight">{s.caption}</h3>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
